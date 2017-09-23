@@ -1,43 +1,67 @@
 <div class="container">
-    <h1>{{title}}</h1>
-    <p>Os Vingadores (Avengers no original em inglês) são um grupo de super-heróis de história em quadrinhos publicados nos Estados Unidos pela editora Marvel Comics. O grupo também aparece em adaptações da Marvel para cinema, desenho animado e videogames. (Wikipedia)</p>
-    <p>Alguns membros da formação atual (clique para ver detalhes):</p>
-    <div>
+    <h1>Gerenciador de Heróis</h1>
+    
+    <!--><h1>{{title}}</h1>
+        <div>
+        <p>Os Vingadores (Avengers no original em inglês) são um grupo de super-heróis de história em quadrinhos publicados nos Estados Unidos pela editora Marvel Comics. O grupo também aparece em adaptações da Marvel para cinema, desenho animado e videogames. (Wikipedia)</p>
+        <p>Alguns membros da formação atual (clique para ver detalhes):</p>
         <app-heroi *ngFor="let vingador of vingadores" [heroi]="vingador" [estahSelecionado]="selecionado && vingador.id == selecionado.id" (onSelecionado)="heroiSelecionado($event)"></app-heroi>
     </div>
 
     <div *ngIf="selecionado">
         {{ selecionado | json }}
     </div>
-
-
-    <br>
-    <h2>Cadastrar herói</h2>
-    <form #formCadastro="ngForm" (ngSubmit)="cadastrar()"> 
-        <!--
-            cria-se variavel de template
-            ngSubmit chama evento chamando função cadastrar no typeScript
-        -->
-        <div class="form-group"> <!-- Classes do Bootstrap-->
-            <label for="nome">Nome:</label>
-            <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="novo.nome" required> 
-            <!-- 
-                NGMODEL - campo obrigatorio  - configurado para servir o angular
-                to way data baind 
-                required - campo obrigatorio
-            -->
+    <-->
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <tr>
+                    <td>#</td>
+                    <td>nome</td>
+                    <td>pessoa</td>
+                    <td>ações</td>
+                </tr>
+                <tr *ngFor ="let vingador of vingadores" >
+                    <td>{{vingador.id}}</td>
+                    <td>{{vingador.nome}}</td>
+                    <td>{{vingador.pessoa}}</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" (click)="editar(vingador.id)"><i class="fa fa-pencil"></i></button>
+                        <button class="btn btn-sm btn-danger" (click)="excluir(vingador.id)"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+            </table>
         </div>
-        
-        <div class="form-group">
-            <label for="pessoa">Pessoa:</label>
-            <input type="text" class="form-control" id="pessoa" name="pessoa" [(ngModel)]="novo.pessoa" required>
+        <div class="col">   
+            <br>
+            <h2>Cadastrar herói</h2>
+            <form #formCadastro="ngForm" (ngSubmit)="cadastrar()"> 
+                <!--
+                    cria-se variavel de template
+                    ngSubmit chama evento chamando função cadastrar no typeScript
+                -->
+                <div class="form-group"> <!-- Classes do Bootstrap-->
+                    <label for="nome">Nome:</label>
+                    <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="novo.nome" required> 
+                    <!-- 
+                        NGMODEL - campo obrigatorio  - configurado para servir o angular
+                        to way data baind 
+                        required - campo obrigatorio
+                    -->
+                </div>
+                
+                <div class="form-group">
+                    <label for="pessoa">Pessoa:</label>
+                    <input type="text" class="form-control" id="pessoa" name="pessoa" [(ngModel)]="novo.pessoa" required>
+                </div>
+                <button type="submit" class="btn btn-primary" [disabled]="!formCadastro.valid">Salvar</button>
+                <!--
+                    submit - requisição ao servidor
+                    eniar para propria pagina, para requisição de api, para outra pagina
+                    disabled - propriedade gerenciada pelo angular - .valid se atributo é valido
+                            se estiver desabilitado
+                -->
+            </form>
         </div>
-        <button type="submit" class="btn btn-primary" [disabled]="!formCadastro.valid">Salvar</button>
-        <!--
-            submit - requisição ao servidor
-            eniar para propria pagina, para requisição de api, para outra pagina
-            disabled - propriedade gerenciada pelo angular - .valid se atributo é valido
-                    se estiver desabilitado
-        -->
-    </form>
+    </div>
 </div>
