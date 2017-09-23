@@ -13,15 +13,31 @@
 
     <br>
     <h2>Cadastrar herói</h2>
-    <form #formCadastro="ngForm" (ngSubmit)="cadastrar()">
-        <div class="form-group">
+    <form #formCadastro="ngForm" (ngSubmit)="cadastrar()"> 
+        <!--
+            cria-se variavel de template
+            ngSubmit chama evento chamando função cadastrar no typeScript
+        -->
+        <div class="form-group"> <!-- Classes do Bootstrap-->
             <label for="nome">Nome:</label>
-            <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="novo.nome" required>
+            <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="novo.nome" required> 
+            <!-- 
+                NGMODEL - campo obrigatorio  - configurado para servir o angular
+                to way data baind 
+                required - campo obrigatorio
+            -->
         </div>
+        
         <div class="form-group">
             <label for="pessoa">Pessoa:</label>
             <input type="text" class="form-control" id="pessoa" name="pessoa" [(ngModel)]="novo.pessoa" required>
         </div>
         <button type="submit" class="btn btn-primary" [disabled]="!formCadastro.valid">Salvar</button>
+        <!--
+            submit - requisição ao servidor
+            eniar para propria pagina, para requisição de api, para outra pagina
+            disabled - propriedade gerenciada pelo angular - .valid se atributo é valido
+                    se estiver desabilitado
+        -->
     </form>
 </div>

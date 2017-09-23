@@ -11,7 +11,8 @@ export class AppComponent implements OnInit {
     title: string;
     vingadores: Array<Vingador>;
     selecionado: Vingador;
-    novo: Vingador = new Vingador(0, '', '');
+    novo: Vingador = new Vingador(0, '', ''); //utilizando o construtor
+    // instanciar no cadastrarconfi
 
     constructor() {
         this.title = 'Vingadores';
@@ -34,6 +35,8 @@ export class AppComponent implements OnInit {
     cadastrar(): void {
         const novoId: number = this.vingadores.length + 1;
         this.vingadores.push(new Vingador(novoId, this.novo.nome, this.novo.pessoa));
+        
         this.novo = new Vingador(0, '', '');
+        //funcionando com objetos
     }
 }
